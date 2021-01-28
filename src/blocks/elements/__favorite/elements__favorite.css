@@ -1,0 +1,19 @@
+.elements__favorite {
+    height: 18.13px;
+    width: 20.76px;
+    margin-top: 6px;
+    background-image: url("../../../images/favoriteHeart.svg");
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    top: 303px;
+    right: 18.24px;
+    background-size: 20.76px 18.13px;
+  }
+
+  .elements__favorite:hover {
+    opacity: .6;
+    transition: color 2s ease .5s;
+}

@@ -1,0 +1,25 @@
+@import url("./__element/elements__element.css");
+@import url("./__element-pic/elements__element-pic.css");
+@import url("./__caption/elements__caption.css");
+@import url("./__favorite/elements__favorite.css");
+@import url("./__favorite/_selected/elements__favorite_selected.css");
+@import url("./__trash/elements__trash.css");
+@import url("./__likes/elements__likes.css");
+@import url("./__favorite-container/elements__favorite-container.css");
+
+.elements{
+    margin: 47.25px auto 66px;
+    display: grid;
+    max-width: 880px;
+    grid-template-columns: repeat(auto-fill, 282px);
+    grid-auto-rows: 361px;
+    grid-row-gap: 20px;
+    grid-column-gap: 17px;
+    justify-content: center;
+}
+
+@media screen and (max-width: 880px) {
+    .elements {
+        margin: 0 auto 48px;
+    }
+}

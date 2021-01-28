@@ -1,0 +1,7 @@
+.elements__favorite-container {
+    width: 25px;
+    padding: 0 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

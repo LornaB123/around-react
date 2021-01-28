@@ -1,0 +1,22 @@
+.elements__trash {
+    visibility: hidden;
+    background-image: url(../../../images/trashIcon.png);
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    width: 18px;
+    height: 19.3px;
+    top: 18px;
+    right: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+.elements__trash_visible {
+    visibility: visible;
+}
+
+.elements__trash:hover{
+    opacity: .6;
+    transition: color 2s ease .5s; 
+}
