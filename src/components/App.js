@@ -1,29 +1,15 @@
 import React from 'react';
-import Header from './components/Header.js';
+import Header from './Header/Header.js';
+import Main from './Main/Main.js';
 
 function App() {
   return (
     
 <div className="body">
   <Header />
-            <main className="content">
-                <section class="profile">
-                        <div className="profile__avatar">
-                            <img className="profile__image" src="images/cousteau.png" alt="Jacques Cousteau Avatar" />
-                            <button className="profile__image-edit" type="button" aria-label="Edit Avatar"></button>
-                        </div>
-                    <div class="profile__info">
-                        <h1 class="profile__info-title">Jacques Cousteau</h1>
-                        <button class="profile__edit-button" aria-label="Edit"></button>
-                        <p class="profile__info-subtitle">Explorer</p>   
-                    </div>
-                    <button class="profile__add-button" aria-label="Add"></button>
-                </section>
-                <section class="elements"></section>
-            </main>
-            <footer class="footer">
-                <p class="footer__info">© 2020 Around The U.S.</p>
-            </footer>
+  <Main />
+            
+
 
             <div class = "popup popup_type_avatar">
                 <div class="popup__container">
