@@ -1,6 +1,7 @@
 .body {
     margin: 0 auto;
     background: black;
+    min-height: 100vh;
     color: white;
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;

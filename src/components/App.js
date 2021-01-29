@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './Header/Header.js';
-import Main from './Main/Main.js';
+import Header from './Header.js';
+import Main from './Main.js';
 
 function App() {
   return (
@@ -8,9 +8,6 @@ function App() {
 <div className="body">
   <Header />
   <Main />
-            
-
-
             <div class = "popup popup_type_avatar">
                 <div class="popup__container">
                     <form action="#" class="popup__form avatar-form" novalidate>
@@ -74,17 +71,7 @@ function App() {
                     </div>
                 </div>
                 
-            <template class = "card__template">
-                <figure class="elements__element">
-                    <img class="elements__element-pic" alt="card image" />
-                    <figcaption class="elements__caption"></figcaption>
-                    <div class = "elements__favorite-container">
-                        <button class="elements__favorite" type="button" aria-label="Like"></button>
-                        <p class="elements__likes">0</p>
-                    </div>
-                    <button class="elements__trash" type="button" aria-label="Delete"></button>
-                </figure>
-            </template>
+         
     </div>
   );
   }
