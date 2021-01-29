@@ -1,77 +1,94 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from './Header.js';
 import Main from './Main.js';
+import Footer from './Footer.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+
+
 
 function App() {
-  return (
+    const [editAvatarOpen, setEditAvatarOpen] = useState(false);
+    const [editProfileOpen, setEditProfileOpen] = useState(false);
+    const [addCardOpen, setAddCardOpen] = useState(false);
+    const [deletePopupOpen, setDeletePopupOpen] = useState(false);
+    const [imagePopupOpen, setImagePopupOpen] = useState(false);
+    //set image popup states
+    const [selectedLink, setSelectedLink] = useState('');
+    const [selectedTitle, setSelectedTitle] = useState('');
+    //handler functions for popups
+    function handleEditAvatarClick(e) {
+        setEditAvatarOpen(true);
+    } 
+
+    function handleEditProfileClick(e) {
+        setEditProfileOpen(true);
+    }
+
+    function handleAddCardClick(e) {
+        setAddCardOpen(true);
+    }
+
+    function handleDeleteCardClick(e) {
+        setDeletePopupOpen(true);
+    }
+
+    function handleClosePopups(e){
+        if(e.target !== e.currentTarget)
+        return
+        setEditAvatarOpen(false);
+        setEditProfileOpen(false);
+        setAddCardOpen(false);
+        setDeletePopupOpen(false);
+        setImagePopupOpen(false);
+    }
+
+    function handleCardClick(link, title) {
+        setSelectedLink(link);
+        setSelectedTitle(title);
+        setImagePopupOpen(true);
+    }
+
+    return (
     
-<div className="body">
-  <Header />
-  <Main />
-            <div class = "popup popup_type_avatar">
-                <div class="popup__container">
-                    <form action="#" class="popup__form avatar-form" novalidate>
-                      <h2 class="popup__title">Change Profile Picture</h2>                        
-                        <input id = "avatar-URL" type='url' name='avatarURL' class="popup__input popup__input_type_avatar-URL" minlength="2" />
-                        <span id="avatar-URL-error" class = "popup__error"></span>
+    <div className="body">
+    <Header />
+    <Main 
+    //prop values passed to main
+     handleEditAvatarClick = {handleEditAvatarClick}
+     handleEditProfileClick = {handleEditProfileClick}
+     handleAddCardClick = {handleAddCardClick}
+     handleDeleteCardClick = {handleDeleteCardClick}
+     handleCardClick = {(link, title) => {handleCardClick(link, title)}}
+    />
+    
+    <PopupWithForm name="type_avatar" title="Change Profile Picture" buttonText="Save" isOpen={editAvatarOpen} onClose={handleClosePopups}>
+        <input id = "avatar-URL" type='url' name='avatarURL' className="popup__input popup__input_type_avatar-URL" minLength="2" />
+        <span id="avatar-URL-error" className = "popup__error"></span>
+    </PopupWithForm>
 
-                        <button class="popup__save" type="submit" aria-label="Save">Save</button>
-                        <button class="popup__close-button" type="reset" aria-label="Close Form"></button>
-                    </form>
-                </div>
-            </div>
+    <PopupWithForm name="type_edit" title="Edit Profile" buttonText="Save" isOpen={editProfileOpen} onClose={handleClosePopups}>
+        <input id = "profile-name" type='text' name='name' className="popup__input popup__input_type_name" placeholder='Jacques Cousteau' required maxLength="40" minLength="2"/>
+        <span id="profile-name-error" className = "popup__error"></span>
 
-            <div class="popup popup_type_edit">
-                <div class="popup__container">
-                    <form action="#" class="popup__form edit-form" novalidate>
-                      <h2 class="popup__title">Edit profile</h2>
-                        
-                        <input id = "profile-name" type='text' name='name' class="popup__input popup__input_type_name" placeholder='Jacques Cousteau' required maxlength="40" minlength="2"/>
-                        <span id="profile-name-error" class = "popup__error"></span>
+        <input id = "profile-text" type='text' name='job' className='popup__input popup__input_type_job' placeholder='Explorer' required maxLength="200" minLength="2"/>
+        <span id="profile-text-error" className = "popup__error"></span>
+    </PopupWithForm>
 
-                        <input id = "profile-text" type='text' name='job' class='popup__input popup__input_type_job' placeholder='Explorer' required maxlength="200" minlength="2"/>
-                        <span id="profile-text-error" class = "popup__error"></span>
+    <PopupWithForm name="type_add-card" title="New Place" buttonText="Create" isOpen={addCardOpen} onClose={handleClosePopups}>
+        <input id="card-title" type='text' name='card-title' className="popup__input popup__input_type_title" placeholder='Title' required maxLength="30" minLength="2"/>
+        <span id="card-title-error" className = "popup__error"></span>
 
-                        <button class="popup__save" type="submit" aria-label="Save">Save</button>
-                        <button class="popup__close-button" type="reset" aria-label="Close Form"></button>
-                    </form>
-                </div>
-            </div>
-                <div class="popup popup_type_add-card">
-                    <div class="popup__container">
-                      <form action="#" class="popup__form add-form" novalidate>
-                        <h2 class="popup__title">New Place</h2>
-                            <input id="card-title" type='text' name='card-title' class="popup__input popup__input_type_title" placeholder='Title' required maxlength="30" minlength="2"/>
-                            <span id="card-title-error" class = "popup__error"></span>
+        <input id="card-url" type='url' name='card-link' className='popup__input popup__input_type_link' placeholder='Image Link' required/>
+        <span id="card-url-error" className = "popup__error"></span>
+    </PopupWithForm>
 
-                            <input id="card-url" type='url' name='card-link' class='popup__input popup__input_type_link' placeholder='Image Link' required/>
-                            <span id="card-url-error" class = "popup__error"></span>
-                            
-                            <button class="popup__save" type="submit" aria-label="Create">Create</button>
-                            <button class="popup__close-button" type="reset" aria-label="Close Form"></button>
-                        </form>
-                    </div>
-                </div>
+    <PopupWithForm name="type_delete-card" title="Are you sure?" buttonText="Yes" isOpen={deletePopupOpen} onClose={handleClosePopups} />
 
-                <div class="popup popup_type_delete-card">
-                    <div class="popup__container">
-                      <form action="#" class="popup__form delete-form" novalidate>
-                        <h2 class="popup__title">Are you sure?</h2>
-                            <button class="popup__save" type="submit" aria-label="Create">Yes</button>
-                            <button class="popup__close-button" type="reset" aria-label="Close Form"></button>
-                        </form>
-                    </div>
-                </div>
+    <PopupWithImage link={selectedLink} title={selectedTitle} isOpen={imagePopupOpen} onClose={handleClosePopups} />
 
-                <div class="popup popup_type_image">
-                    <div class="popup_container_type_image">
-                        <img alt="Popup Image Picture" class="popup__image" />
-                        <h3 class= "popup__caption"></h3>
-                        <button class="popup__close-button" type="reset" aria-label="Close Form"></button>
-                    </div>
-                </div>
-                
-         
+    <Footer />
+     
     </div>
   );
   }

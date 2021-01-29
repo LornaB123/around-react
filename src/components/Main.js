@@ -20,7 +20,7 @@ function Main(props) {
            setUserName(res.name);
            setUserDescription(res.about);
        })
-       .cactch(err => console.log(err));
+       .catch(err => console.log(err));
        //call server to get initial cards
        api.getInitialCards()
        .then((res) => {
@@ -33,7 +33,7 @@ function Main(props) {
             <main className="content">
                 <section className="profile">
                         <div className="profile__avatar">
-                            <img className="profile__image" src={jacquesCousteau} alt={userName} />
+                            <img className="profile__image" src={jacquesCousteau} alt={userAvatar}/>
                             <button onClick={props.handleEditAvatarClick} className="profile__image-edit" type="button" aria-label="Edit Avatar"></button>
                         </div>
                     <div className="profile__info">
@@ -45,14 +45,15 @@ function Main(props) {
                 </section>
                 <section className="elements">
                     <ul className="elements__element">
-                        {cards.map((card, index, handleDeleteCardClick) => 
+                        {cards.map((card) => 
                         <Card
-                        key={index}
+                        key={card._id}
                         src={card.link}
-                        title={card.title}
-                        likes={card.likes}
-                        handleDeleteCardClick = {props.handleDeleteCardClick}
-                        handleCardClick = {()=> props.handleCardClick(card.link, card.title)}
+                        title={card.name}
+                        likes={card.likes.length}
+                        owner={card.owner}
+                        handleDeleteCardClick = {(card) => props.handleDeleteCardClick(card.link, card.name)}
+                        handleCardClick = {()=> props.handleCardClick(card)}
                         />
                         )}
                     </ul>

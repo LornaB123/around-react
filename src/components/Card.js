@@ -2,7 +2,6 @@ import React from 'react';
 
 function Card(props) {
     return(
-        <template className = "card__template">
             <figure className="elements__element">
                 <img className="elements__element-pic" alt="card image" onClick={props.handleCardClick} style={{backgroundImage: `url(${props.src})`}}/>
                 <figcaption className="elements__caption">{props.title}</figcaption>
@@ -12,7 +11,6 @@ function Card(props) {
                 </div>
                 <button className="elements__trash" type="button" onClick ={props.handleDeleteCardClick} aria-label="Delete"></button>
             </figure>
-        </template>
     );
 }
 
