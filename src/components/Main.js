@@ -44,7 +44,7 @@ function Main(props) {
                     <button className="profile__add-button" onClick={props.handleAddCardClick} aria-label="Add"></button>
                 </section>
                 <section className="elements">
-                    <ul className="elements__element">
+                    <>
                         {cards.map((card) => 
                         <Card
                         key={card._id}
@@ -53,10 +53,10 @@ function Main(props) {
                         likes={card.likes.length}
                         owner={card.owner}
                         handleDeleteCardClick = {(card) => props.handleDeleteCardClick(card.link, card.name)}
-                        handleCardClick = {()=> props.handleCardClick(card)}
+                        handleCardClick = {(card) => props.handleCardClick(card)}
                         />
                         )}
-                    </ul>
+                    </>
                 </section>
             </main>
     );
