@@ -4,10 +4,19 @@ import api from '../utils/Api.js';
 import Card from './Card.js';
 
 function Main(props) {
+    const {onEditAvatar,
+    onEditProfile,
+    onAddPlace,
+    onCardClick,
+    onCardDelete,
+    cardsInfo} = props;
+
     //set states for profile content
    const [userAvatar, setUserAvatar] = useState('');
    const [userName, setUserName] = useState('');
    const [userDescription, setUserDescription] = useState('');
+   const [isLoaded, setIsLoaded] = useState(false);
+   const [userId, setUserId] = useState('');
 
    //set states for cards
    const [cards, setCards] = useState([]);
@@ -28,6 +37,20 @@ function Main(props) {
        })
        .catch(err => console.log(err));
    }, []);
+
+   function apiAvatar(avatar) {
+       if (avatar === userAvatar) return onEditAvatar(false);
+       if (avatar !== userAvatar) setIsLoaded(false);
+       const avatarImage = document.querySelector('.profile__image');
+       api.setUserAvatar(avatar)
+       .then( res => {
+            avatarImage.src = res.avatar;
+            isLoaded && onEditAvatar(false);
+       })   
+       .catch(err => console.log(err));
+   }
+
+
    //JSX of main section
     return(
             <main className="content">

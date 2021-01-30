@@ -16,9 +16,13 @@ function App() {
     //set image popup states
     const [selectedLink, setSelectedLink] = useState('');
     const [selectedTitle, setSelectedTitle] = useState('');
+
+
+
     //handler functions for popups
     function handleEditAvatarClick(e) {
         setEditAvatarOpen(true);
+        apiAvatar(avatar);
     } 
 
     function handleEditProfileClick(e) {
@@ -62,12 +66,22 @@ function App() {
      handleCardClick = {(link, title) => {handleCardClick(link, title)}}
     />
     
-    <PopupWithForm name="type_avatar" title="Change Profile Picture" buttonText="Save" isOpen={editAvatarOpen} onClose={handleClosePopups}>
+    <PopupWithForm 
+        name="type_avatar"
+        title="Change Profile Picture" 
+        buttonText="Save" 
+        isOpen={editAvatarOpen} 
+        onClose={handleClosePopups}>
         <input id = "avatar-URL" type='url' name='avatarURL' className="popup__input popup__input_type_avatar-URL" minLength="2" />
         <span id="avatar-URL-error" className = "popup__error"></span>
     </PopupWithForm>
 
-    <PopupWithForm name="type_edit" title="Edit Profile" buttonText="Save" isOpen={editProfileOpen} onClose={handleClosePopups}>
+    <PopupWithForm 
+        name="type_edit" 
+        title="Edit Profile" 
+        buttonText="Save" 
+        isOpen={editProfileOpen} 
+        onClose={handleClosePopups}>
         <input id = "profile-name" type='text' name='name' className="popup__input popup__input_type_name" placeholder='Jacques Cousteau' required maxLength="40" minLength="2"/>
         <span id="profile-name-error" className = "popup__error"></span>
 
@@ -75,7 +89,12 @@ function App() {
         <span id="profile-text-error" className = "popup__error"></span>
     </PopupWithForm>
 
-    <PopupWithForm name="type_add-card" title="New Place" buttonText="Create" isOpen={addCardOpen} onClose={handleClosePopups}>
+    <PopupWithForm 
+        name="type_add-card" 
+        title="New Place" 
+        buttonText="Create" 
+        isOpen={addCardOpen} 
+        onClose={handleClosePopups}>
         <input id="card-title" type='text' name='card-title' className="popup__input popup__input_type_title" placeholder='Title' required maxLength="30" minLength="2"/>
         <span id="card-title-error" className = "popup__error"></span>
 
@@ -83,7 +102,12 @@ function App() {
         <span id="card-url-error" className = "popup__error"></span>
     </PopupWithForm>
 
-    <PopupWithForm name="type_delete-card" title="Are you sure?" buttonText="Yes" isOpen={deletePopupOpen} onClose={handleClosePopups} />
+    <PopupWithForm 
+        name="type_delete-card" 
+        title="Are you sure?" 
+        buttonText="Yes" 
+        isOpen={deletePopupOpen} 
+        onClose={handleClosePopups} />
 
     <PopupWithImage link={selectedLink} title={selectedTitle} isOpen={imagePopupOpen} onClose={handleClosePopups} />
 
