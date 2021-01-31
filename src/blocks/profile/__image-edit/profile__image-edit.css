@@ -1,0 +1,25 @@
+.profile__image-edit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 120px;
+    width: 120px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+.profile__image-edit:hover{
+    background-image: url(../../../images/pencilIcon.png);
+    background-position: center;
+    border: none;
+    background-repeat: no-repeat;
+    opacity: 1;
+    background-color: rgba(0,0,0,.6);
+    transition: color 2s ease 1s;
+    background-size: 26px;
+}
+
+.profile__image-edit:focus {
+    outline: none;
+}

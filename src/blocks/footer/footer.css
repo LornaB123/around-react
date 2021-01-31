@@ -1,0 +1,28 @@
+.footer {
+    margin: auto;
+    padding: 60px 0 66px;
+    font-size: 18px;
+    line-height: 22px;
+    color: #545454;
+    max-width: 880px;
+  }
+
+  .footer :first-child {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 879px) {
+    .footer {
+      max-width: 582px;
+    }
+  }
+
+  @media screen and (max-width: 581px) {
+    .footer {
+      font-size: 14px;
+      line-height: 16.94px;
+      max-width: 282px;
+      margin: auto;
+      padding: 48px 0 36px;
+    }
+  }
