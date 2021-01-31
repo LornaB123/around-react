@@ -1,11 +1,11 @@
 import React from 'react';
 
 function Card(props) {
-    const {card, onCardDelete, onCardClick, key, src, title, likes, owner} = props;
+    const {card, onCardDelete, onCardClick} = props;
     return(
         <figure className="elements__element">
-                <img className="elements__element-pic" alt="card image" onClick ={onCardClick} src={card.src}/>
-                <figcaption className="elements__caption">{card.title}</figcaption>
+                <img className="elements__element-pic" alt="card image" onClick ={onCardClick} src={card.link}/>
+                <figcaption className="elements__caption">{card.name}</figcaption>
                 <div className = "elements__favorite-container">
                     <button className="elements__favorite" type="button" aria-label="Like"></button>
                     <p className="elements__likes">{card.likes}</p>

@@ -56,7 +56,7 @@ function Main(props) {
                     <>
                         {cards.map((card) => 
                         <Card
-                        //key={card._id}
+                        key={card._id}
                         card = {card}
                         //src={card.link}
                         //title={card.name}
