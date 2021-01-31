@@ -57,17 +57,16 @@ function Main(props) {
                     <>
                         {cards.map((card) => 
                         <Card
-                        {...card} 
-                        // key={card._id}
-                        // card = {{...card}}
-                        // //src={card.link}
-                        // //title={card.name}
-                        // //likes={card.likes.length}
-                        // //owner={card.owner}
-                        // // onCardDelete = {(card) => props.onCardDelete(card.link, card.name)}
-                        // //onCardClick = {(card) => props.onCardClick(card)}
-                        // onCardDelete = {onCardDelete}
-                        // onCardClick = {onCardClick}
+                        key={card._id}
+                        card = {card}
+                        //src={card.link}
+                        //title={card.name}
+                        //likes={card.likes.length}
+                        //owner={card.owner}
+                        //onCardDelete = {(card) => props.onCardDelete(card.link, card.name)}
+                        //onCardClick = {(card) => props.onCardClick(card)}
+                        onCardDelete = {onCardDelete}
+                        onCardClick = {onCardClick}
                         />
                         )}
                     </>

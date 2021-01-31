@@ -1,14 +1,14 @@
 import React from 'react';
 
 function Card(props) {
-    const {card, onCardDelete, onCardClick} = props;
+   const {card, onCardDelete, onCardClick} = props;
     return(
         <figure className="elements__element">
-                <img className="elements__element-pic" alt="card image" onClick ={onCardClick} src={props.link}/>
-                <figcaption className="elements__caption">{props.name}</figcaption>
+                <img className="elements__element-pic" alt="card image" onClick ={(card) => onCardClick(card)} src={card.link}/>
+                <figcaption className="elements__caption">{card.name}</figcaption>
                 <div className = "elements__favorite-container">
                     <button className="elements__favorite" type="button" aria-label="Like"></button>
-                    <p className="elements__likes">{props.likes}</p>
+                    <p className="elements__likes">{card.likes.length}</p>
                 </div>
                 <button className="elements__trash" type="button" onClick ={onCardDelete} aria-label="Delete"></button>
         </figure>
