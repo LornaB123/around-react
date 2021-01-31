@@ -10,7 +10,7 @@ function Card(props) {
                     <button className="elements__favorite" type="button" aria-label="Like"></button>
                     <p className="elements__likes">{card.likes.length}</p>
                 </div>
-                <button className="elements__trash" type="button" onClick ={onCardDelete} aria-label="Delete"></button>
+                <button className="elements__trash" type="button" onClick ={() => onCardDelete(card)} aria-label="Delete"></button>
         </figure>
     );
 }
