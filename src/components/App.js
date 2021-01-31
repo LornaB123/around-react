@@ -33,14 +33,18 @@ function App() {
         setDeletePopupOpen(true);
     }
 
-    function handleClosePopups(e){
-        if(e.target !== e.currentTarget)
-        return
+    function closeAllPopups() {
         setEditAvatarOpen(false);
         setEditProfileOpen(false);
         setAddCardOpen(false);
         setDeletePopupOpen(false);
         setImagePopupOpen(false);
+    }
+
+    function handleClosePopups(e){
+        if(e.target !== e.currentTarget)
+        return
+        closeAllPopups()
     }
 
     function handleCardClick(card) {
