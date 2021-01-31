@@ -58,7 +58,7 @@ function App() {
      onEditProfile = {handleEditProfileClick}
      onAddPlace = {handleAddCardClick}
      onCardDelete = {handleDeleteCardClick}
-     onCardClick = {(link, title) => {handleCardClick(link, title)}}
+     onCardClick = {handleCardClick}
     />
     
     <PopupWithForm 

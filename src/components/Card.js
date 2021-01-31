@@ -4,7 +4,7 @@ function Card(props) {
    const {card, onCardDelete, onCardClick} = props;
     return(
         <figure className="elements__element">
-                <img className="elements__element-pic" alt="card image" onClick ={(card) => onCardClick(card)} src={card.link}/>
+                <img className="elements__element-pic" alt="card image" onClick ={() => onCardClick(card)} src={card.link}/>
                 <figcaption className="elements__caption">{card.name}</figcaption>
                 <div className = "elements__favorite-container">
                     <button className="elements__favorite" type="button" aria-label="Like"></button>
