@@ -4,15 +4,3 @@
     border-radius: 60px;
     align-self: center;
 }
-
-@media screen and (max-width: 1120px) {
-    .profile__image{
-        margin-left: 22px;
-    }
-}
-
-@media screen and (max-width: 880px) {
-    .profile__image{
-        margin: 38.25px auto 26.25px;
-    }
-}

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import jacquesCousteau from '../images/cousteau.png';
+//import jacquesCousteau from '../images/cousteau.png';
 import api from '../utils/Api.js';
 import Card from './Card.js';
 
@@ -43,7 +43,7 @@ function Main(props) {
             <main className="content">
                 <section className="profile">
                         <div className="profile__avatar">
-                            <img className="profile__image" src={jacquesCousteau} alt={userAvatar}/>
+                            <img className="profile__image" src={userAvatar} alt={userAvatar}/>
                             <button onClick={props.onEditAvatar} className="profile__image-edit" type="button" aria-label="Edit Avatar"></button>
                         </div>
                     <div className="profile__info">
