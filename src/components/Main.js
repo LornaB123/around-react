@@ -4,11 +4,11 @@ import api from '../utils/Api.js';
 import Card from './Card.js';
 
 function Main(props) {
-    const {handleEditAvatarClick,
-        handleEditProfileClick,
-        handleAddCardClick,
-        handleDeleteCardClick,
-        handleCardClick} = props;
+    const {onEditAvatar,
+    onEditProfile,
+    onAddPlace,
+    onCardClick,
+    onCardDelete} = props;
 
     //set states for profile content
    const [userAvatar, setUserAvatar] = useState('');
@@ -61,8 +61,8 @@ function Main(props) {
                         title={card.name}
                         likes={card.likes.length}
                         owner={card.owner}
-                        handleDeleteCardClick = {(card) => props.handleDeleteCardClick(card.link, card.name)}
-                        handleCardClick = {(card) => props.handleCardClick(card)}
+                        onCardDelete = {(card) => props.handleDeleteCardClick(card.link, card.name)}
+                        onCardClick = {(card) => props.handleCardClick(card)}
                         />
                         )}
                     </>

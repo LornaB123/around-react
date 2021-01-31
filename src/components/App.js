@@ -54,11 +54,11 @@ function App() {
     <Header />
     <Main 
     //prop values passed to main
-     handleEditAvatarClick = {handleEditAvatarClick}
-     handleEditProfileClick = {handleEditProfileClick}
-     handleAddCardClick = {handleAddCardClick}
-     handleDeleteCardClick = {handleDeleteCardClick}
-     handleCardClick = {(link, title) => {handleCardClick(link, title)}}
+     onEditAvatar = {handleEditAvatarClick}
+     onEditProfile = {handleEditProfileClick}
+     onAddPlace = {handleAddCardClick}
+     onCardDelete = {handleDeleteCardClick}
+     onCardClick = {(link, title) => {handleCardClick(link, title)}}
     />
     
     <PopupWithForm 
