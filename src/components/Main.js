@@ -31,6 +31,7 @@ function Main(props) {
        //call server to get initial cards
        api.getInitialCards()
        .then((res) => {
+           console.log(res)
            setCards(res)
        })
        .catch(err => console.log(err));
@@ -56,16 +57,17 @@ function Main(props) {
                     <>
                         {cards.map((card) => 
                         <Card
-                        key={card._id}
-                        card = {card}
-                        //src={card.link}
-                        //title={card.name}
-                        //likes={card.likes.length}
-                        //owner={card.owner}
-                        // onCardDelete = {(card) => props.onCardDelete(card.link, card.name)}
-                        //onCardClick = {(card) => props.onCardClick(card)}
-                        onCardDelete = {onCardDelete}
-                        onCardClick = {onCardClick}
+                        {...card} 
+                        // key={card._id}
+                        // card = {{...card}}
+                        // //src={card.link}
+                        // //title={card.name}
+                        // //likes={card.likes.length}
+                        // //owner={card.owner}
+                        // // onCardDelete = {(card) => props.onCardDelete(card.link, card.name)}
+                        // //onCardClick = {(card) => props.onCardClick(card)}
+                        // onCardDelete = {onCardDelete}
+                        // onCardClick = {onCardClick}
                         />
                         )}
                     </>
