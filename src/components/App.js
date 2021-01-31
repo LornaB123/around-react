@@ -14,15 +14,11 @@ function App() {
     const [deletePopupOpen, setDeletePopupOpen] = useState(false);
     const [imagePopupOpen, setImagePopupOpen] = useState(false);
     //set image popup states
-    const [selectedLink, setSelectedLink] = useState('');
-    const [selectedTitle, setSelectedTitle] = useState('');
-
-
+    const [selectedCard, setSelectedCard] = useState('');
 
     //handler functions for popups
     function handleEditAvatarClick(e) {
         setEditAvatarOpen(true);
-        apiAvatar(avatar);
     } 
 
     function handleEditProfileClick(e) {
@@ -47,9 +43,8 @@ function App() {
         setImagePopupOpen(false);
     }
 
-    function handleCardClick(link, title) {
-        setSelectedLink(link);
-        setSelectedTitle(title);
+    function handleCardClick(card) {
+        setSelectedCard(card);
         setImagePopupOpen(true);
     }
 
@@ -109,7 +104,7 @@ function App() {
         isOpen={deletePopupOpen} 
         onClose={handleClosePopups} />
 
-    <PopupWithImage link={selectedLink} title={selectedTitle} isOpen={imagePopupOpen} onClose={handleClosePopups} />
+    <PopupWithImage card={selectedCard} isOpen={imagePopupOpen} onClose={handleClosePopups} />
 
     <Footer />
      

@@ -1,22 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import jacquesCousteau from '../images/cousteau.png';
+//import jacquesCousteau from '../images/cousteau.png';
 import api from '../utils/Api.js';
 import Card from './Card.js';
 
 function Main(props) {
-    const {onEditAvatar,
-    onEditProfile,
-    onAddPlace,
-    onCardClick,
-    onCardDelete,
-    cardsInfo} = props;
+    const {handleEditAvatarClick,
+        handleEditProfileClick,
+        handleAddCardClick,
+        handleDeleteCardClick,
+        handleCardClick} = props;
 
     //set states for profile content
    const [userAvatar, setUserAvatar] = useState('');
    const [userName, setUserName] = useState('');
    const [userDescription, setUserDescription] = useState('');
    const [isLoaded, setIsLoaded] = useState(false);
-   const [userId, setUserId] = useState('');
 
    //set states for cards
    const [cards, setCards] = useState([]);
@@ -38,25 +36,13 @@ function Main(props) {
        .catch(err => console.log(err));
    }, []);
 
-   function apiAvatar(avatar) {
-       if (avatar === userAvatar) return onEditAvatar(false);
-       if (avatar !== userAvatar) setIsLoaded(false);
-       const avatarImage = document.querySelector('.profile__image');
-       api.setUserAvatar(avatar)
-       .then( res => {
-            avatarImage.src = res.avatar;
-            isLoaded && onEditAvatar(false);
-       })   
-       .catch(err => console.log(err));
-   }
-
 
    //JSX of main section
     return(
             <main className="content">
                 <section className="profile">
                         <div className="profile__avatar">
-                            <img className="profile__image" src={jacquesCousteau} alt={userAvatar}/>
+                            <img className="profile__image"  alt={userAvatar}/>
                             <button onClick={props.handleEditAvatarClick} className="profile__image-edit" type="button" aria-label="Edit Avatar"></button>
                         </div>
                     <div className="profile__info">
