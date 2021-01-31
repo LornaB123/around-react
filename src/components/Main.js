@@ -59,12 +59,6 @@ function Main(props) {
                         <Card
                         key={card._id}
                         card = {card}
-                        //src={card.link}
-                        //title={card.name}
-                        //likes={card.likes.length}
-                        //owner={card.owner}
-                        //onCardDelete = {(card) => props.onCardDelete(card.link, card.name)}
-                        //onCardClick = {(card) => props.onCardClick(card)}
                         onCardDelete = {onCardDelete}
                         onCardClick = {onCardClick}
                         />

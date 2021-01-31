@@ -52,6 +52,7 @@ function App() {
     
     <div className="body">
     <Header />
+    
     <Main 
     //prop values passed to main
      onEditAvatar = {handleEditAvatarClick}
@@ -60,7 +61,9 @@ function App() {
      onCardDelete = {handleDeleteCardClick}
      onCardClick = {handleCardClick}
     />
-    
+
+    <Footer />
+
     <PopupWithForm 
         name="type_avatar"
         title="Change Profile Picture" 
@@ -104,10 +107,7 @@ function App() {
         isOpen={deletePopupOpen} 
         onClose={handleClosePopups} />
 
-    <PopupWithImage card={selectedCard} isOpen={imagePopupOpen} onClose={handleClosePopups} />
-
-    <Footer />
-     
+    <PopupWithImage card={selectedCard} isOpen={imagePopupOpen} onClose={handleClosePopups} /> 
     </div>
   );
   }
