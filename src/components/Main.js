@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-//import jacquesCousteau from '../images/cousteau.png';
+import jacquesCousteau from '../images/cousteau.png';
 import api from '../utils/Api.js';
 import Card from './Card.js';
 
@@ -42,27 +42,30 @@ function Main(props) {
             <main className="content">
                 <section className="profile">
                         <div className="profile__avatar">
-                            <img className="profile__image"  alt={userAvatar}/>
-                            <button onClick={props.handleEditAvatarClick} className="profile__image-edit" type="button" aria-label="Edit Avatar"></button>
+                            <img className="profile__image" src={jacquesCousteau} alt={userAvatar}/>
+                            <button onClick={props.onEditAvatar} className="profile__image-edit" type="button" aria-label="Edit Avatar"></button>
                         </div>
                     <div className="profile__info">
                         <h1 className="profile__info-title">{userName}</h1>
-                        <button className="profile__edit-button" onClick={props.handleEditProfileClick} aria-label="Edit Profile"></button>
+                        <button className="profile__edit-button" onClick={props.onEditProfile} aria-label="Edit Profile"></button>
                         <p className="profile__info-subtitle">{userDescription}</p>   
                     </div>
-                    <button className="profile__add-button" onClick={props.handleAddCardClick} aria-label="Add"></button>
+                    <button className="profile__add-button" onClick={props.onAddPlace} aria-label="Add"></button>
                 </section>
                 <section className="elements">
                     <>
                         {cards.map((card) => 
                         <Card
-                        key={card._id}
-                        src={card.link}
-                        title={card.name}
-                        likes={card.likes.length}
-                        owner={card.owner}
-                        onCardDelete = {(card) => props.handleDeleteCardClick(card.link, card.name)}
-                        onCardClick = {(card) => props.handleCardClick(card)}
+                        //key={card._id}
+                        card = {card}
+                        //src={card.link}
+                        //title={card.name}
+                        //likes={card.likes.length}
+                        //owner={card.owner}
+                        // onCardDelete = {(card) => props.onCardDelete(card.link, card.name)}
+                        //onCardClick = {(card) => props.onCardClick(card)}
+                        onCardDelete = {onCardDelete}
+                        onCardClick = {onCardClick}
                         />
                         )}
                     </>
