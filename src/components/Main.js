@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 //import jacquesCousteau from '../images/cousteau.png';
-import api from '../utils/api.js';
+import api from '../utils/Api.js';
 import Card from './Card.js';
 
 function Main(props) {
@@ -55,14 +55,13 @@ function Main(props) {
                 </section>
                 <section className="elements">
                     <>
-                        {cards.map((card) => (
+                        {cards.map((card) => 
                         <Card
                         key={card._id}
                         card = {card}
                         onCardDelete = {onCardDelete}
                         onCardClick = {onCardClick}
                         />
-                        )
                         )}
                     </>
                 </section>
