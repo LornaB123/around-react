@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import EditProfilePopup from './EditProfilePopup.js';
+import api from '../utils/api.js';
+import CurrentUserContext from '../contexts/CurrentUserContext.js';
 
 
 
@@ -13,8 +16,20 @@ function App() {
     const [addCardOpen, setAddCardOpen] = useState(false);
     const [deletePopupOpen, setDeletePopupOpen] = useState(false);
     const [imagePopupOpen, setImagePopupOpen] = useState(false);
+    const [likeCardButton, setLikeCardButton] = useState(false);
     //set image popup states
     const [selectedCard, setSelectedCard] = useState('');
+    //state variable for current user - calls api.getUserInfo()
+    const [currentUser, setCurrentUser] = useState('');
+
+    useEffect(() => {
+        api.getUserInfo()
+        .then((res) => {
+            setCurrentUser(res);
+        })
+        .catch(err => console.log(err));
+    }, []);
+    
 
     //handler functions for popups
     function handleEditAvatarClick(e) {
@@ -31,6 +46,10 @@ function App() {
 
     function handleDeleteCardClick(e) {
         setDeletePopupOpen(true);
+    }
+    
+    function handleLikeClick(e) {
+        setLikeCardButton(true);
     }
 
     function closeAllPopups() {
@@ -55,6 +74,7 @@ function App() {
     return (
     
     <div className="body">
+    <CurrentUserContext.Provider value={currentUser}>
     <Header />
     
     <Main 
@@ -64,6 +84,7 @@ function App() {
      onAddPlace = {handleAddCardClick}
      onCardDelete = {handleDeleteCardClick}
      onCardClick = {handleCardClick}
+     onCardLike = {handleLikeClick}
     />
 
     <Footer />
@@ -78,18 +99,7 @@ function App() {
         <span id="avatar-URL-error" className = "popup__error"></span>
     </PopupWithForm>
 
-    <PopupWithForm 
-        name="type_edit" 
-        title="Edit Profile" 
-        buttonText="Save" 
-        isOpen={editProfileOpen} 
-        onClose={handleClosePopups}>
-        <input id = "profile-name" type='text' name='name' className="popup__input popup__input_type_name" placeholder='Jacques Cousteau' required maxLength="40" minLength="2"/>
-        <span id="profile-name-error" className = "popup__error"></span>
-
-        <input id = "profile-text" type='text' name='job' className='popup__input popup__input_type_job' placeholder='Explorer' required maxLength="200" minLength="2"/>
-        <span id="profile-text-error" className = "popup__error"></span>
-    </PopupWithForm>
+    <EditProfilePopup isOpen={editProfileOpen} onClose={closeAllPopups} />
 
     <PopupWithForm 
         name="type_add-card" 
@@ -111,7 +121,8 @@ function App() {
         isOpen={deletePopupOpen} 
         onClose={handleClosePopups} />
 
-    <PopupWithImage card={selectedCard} isOpen={imagePopupOpen} onClose={handleClosePopups} /> 
+    <PopupWithImage card={selectedCard} isOpen={imagePopupOpen} onClose={handleClosePopups} />
+    </CurrentUserContext.Provider> 
     </div>
   );
   }
