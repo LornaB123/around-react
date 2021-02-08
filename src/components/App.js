@@ -30,6 +30,19 @@ function App() {
         .catch(err => console.log(err));
     }, []);
     
+    function handleUpdateUser({name, about}){
+        const profileName = document.querySelector('.profile__info-title');  
+        const profileJob = document.querySelector('.profile__info-subtitle'); 
+       
+        api.setUserInfo({name: name, job: about})
+        .then((res) => {
+            profileName.textContent = res.name;
+            profileJob.textContent = res.about;
+            setCurrentUser(res);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => handleClosePopups());
+    }
 
     //handler functions for popups
     function handleEditAvatarClick(e) {
@@ -51,6 +64,7 @@ function App() {
     function handleLikeClick(e) {
         setLikeCardButton(true);
     }
+
 
     function closeAllPopups() {
         setEditAvatarOpen(false);
@@ -99,7 +113,10 @@ function App() {
         <span id="avatar-URL-error" className = "popup__error"></span>
     </PopupWithForm>
 
-    <EditProfilePopup isOpen={editProfileOpen} onClose={closeAllPopups} />
+    <EditProfilePopup 
+        isOpen={editProfileOpen} 
+        onClose={handleClosePopups} 
+        onSubmit={handleUpdateUser}/>
 
     <PopupWithForm 
         name="type_add-card" 

@@ -18,38 +18,41 @@ function Main(props) {
    const [isLoaded, setIsLoaded] = useState(false);
 
    //set states for cards
-   const [cards, setCards] = useState([]);
+   const [cards, setCards] = useState([]); 
 
-//    updateLikes(likes) { 
-//     this._likes = likes; 
-//     this.showLikes(); 
-//} 
    function handleCardLike(card) {
-    // Check one more time if this card was already liked
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-    
-    // Send a request to the API and getting the updated card data
-    api.changeLikeCardStatus(card._id, !isLiked)
-    .then((newCard) => {
-      // Create a new array based on the existing one and putting a new card into it
-      const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-      // Update the state
-      setCards(newCards);
-    });
-} 
+   //check one more time if this card was already liked
+   const isLiked = card.likes.some((i) => i._id === currentUser._id);
+   let likeStatus
+   if(isLiked === false){
+       likeStatus = api.addLike(card._id)
+   }
+   else{
+       likeStatus = api.removeLike(card._id)
+   }
+   likeStatus
+   .then((newCard) => {
+       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+       //update the state
+       setCards(newCards);
+   })
+   .catch((err) => console.log(err));
+}
+
+function handleCardDelete(card){
+    api.removeCard(card._id)
+    .then(() => {
+        const cardList = cards.filter((c) => (c._id !== card._id))
+        setCards(cardList);
+    })
+    .catch((err) => console.log(err));
+}
+
+
    //call server for profile content
    useEffect(() => {
-    //    api.getUserInfo()
-    //    .then((res) => {
-    //        setUserAvatar(res.avatar);
-    //        setUserName(res.name);
-    //        setUserDescription(res.about);
-    //    })
-    //    .catch(err => console.log(err));
-       //call server to get initial cards
        api.getInitialCards()
        .then((res) => {
-           console.log(res)
            setCards(res)
        })
        .catch(err => console.log(err));
@@ -77,9 +80,9 @@ function Main(props) {
                         <Card
                         key={card._id}
                         card = {card}
-                        onCardDelete = {onCardDelete}
+                        onCardDelete = {handleCardDelete}
                         onCardClick = {onCardClick}
-                        onCardLike = {onCardLike}
+                        onCardLike = {handleCardLike}
                         />
                         )
                         )}
