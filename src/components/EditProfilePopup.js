@@ -10,11 +10,11 @@ function EditProfilePopup(props) {
     const currentUser = useContext(CurrentUserContext);
 
     function handleChangeName(e){
-        setName(e.target.name);
+        setName(e.target.value);
     }
 
     function handleChangeAbout(e){
-        setDescription(e.target.about);
+        setDescription(e.target.value);
     }
 
     function handleSubmit(e) {
@@ -48,6 +48,7 @@ function EditProfilePopup(props) {
             >
             <input id = "profile-name" type='text'
             name='name' 
+            value = {name || ''}
             className="popup__input popup__input_type_name" 
             onChange={handleChangeName} 
             placeholder='Jacques Cousteau' 
@@ -56,6 +57,7 @@ function EditProfilePopup(props) {
 
             <input id = "profile-text" type='text' 
             name='about' className='popup__input popup__input_type_job' 
+            value = {description || ''}
             onChange={handleChangeAbout} placeholder='Explorer' 
             required maxLength="200" minLength="2"/>
             <span id="profile-text-error" className = "popup__error"></span>
