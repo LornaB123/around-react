@@ -63,8 +63,6 @@ function EditProfilePopup(props) {
             <span id="profile-text-error" className = "popup__error"></span>
         </PopupWithForm>
     );
-
-
 }
 
 export default EditProfilePopup;
