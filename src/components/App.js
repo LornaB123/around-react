@@ -33,7 +33,8 @@ function App() {
     function handleUpdateUser({name, about}){
         api.setUserInfo({name, about})
         .then((res) => {
-            setCurrentUser(currentUser.name, currentUser.about);
+            console.log(res);
+            setCurrentUser(res);
         })
         .catch((err) => console.log(err))
         .finally(() => handleClosePopups());
@@ -111,7 +112,7 @@ function App() {
     <EditProfilePopup 
         isOpen={editProfileOpen} 
         onClose={handleClosePopups} 
-        onSubmit={handleUpdateUser}/>
+        onUpdateUser={handleUpdateUser}/>
 
     <PopupWithForm 
         name="type_add-card" 
