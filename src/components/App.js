@@ -31,14 +31,9 @@ function App() {
     }, []);
     
     function handleUpdateUser({name, about}){
-        const profileName = document.querySelector('.profile__info-title');  
-        const profileJob = document.querySelector('.profile__info-subtitle'); 
-       
-        api.setUserInfo({name: name, job: about})
+        api.setUserInfo({name, about})
         .then((res) => {
-            profileName.textContent = res.name;
-            profileJob.textContent = res.about;
-            setCurrentUser(res);
+            setCurrentUser(currentUser.name, currentUser.about);
         })
         .catch((err) => console.log(err))
         .finally(() => handleClosePopups());

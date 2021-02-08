@@ -49,7 +49,7 @@ function EditProfilePopup(props) {
             <input id = "profile-name" type='text' name='name' className="popup__input popup__input_type_name" onChange={handleChangeName} placeholder='Jacques Cousteau' required maxLength="40" minLength="2"/>
             <span id="profile-name-error" className = "popup__error"></span>
 
-            <input id = "profile-text" type='text' name='job' className='popup__input popup__input_type_job' onChange={handleChangeDescription} placeholder='Explorer' required maxLength="200" minLength="2"/>
+            <input id = "profile-text" type='text' name='about' className='popup__input popup__input_type_job' onChange={handleChangeDescription} placeholder='Explorer' required maxLength="200" minLength="2"/>
             <span id="profile-text-error" className = "popup__error"></span>
         </PopupWithForm>
     );
