@@ -15,7 +15,7 @@ function Main(props) {
    //const [userAvatar, setUserAvatar] = useState('');
    //const [userName, setUserName] = useState('');
    //const [userDescription, setUserDescription] = useState('');
-   const [isLoaded, setIsLoaded] = useState(false);
+  // const [isLoaded, setIsLoaded] = useState(false);
 
    //set states for cards
    const [cards, setCards] = useState([]); 

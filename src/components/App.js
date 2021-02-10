@@ -5,9 +5,9 @@ import Footer from './Footer.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import EditProfilePopup from './EditProfilePopup.js';
+import EditAvatarPopup from './EditAvatarPopup.js';
 import api from '../utils/api.js';
 import CurrentUserContext from '../contexts/CurrentUserContext.js';
-
 
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
     const [selectedCard, setSelectedCard] = useState('');
     //state variable for current user - calls api.getUserInfo()
     const [currentUser, setCurrentUser] = useState('');
+    const [currentAvatar, setCurrentAvatar] = useState('');
 
     useEffect(() => {
         api.getUserInfo()
@@ -33,11 +34,19 @@ function App() {
     function handleUpdateUser({name, about}){
         api.setUserInfo({name, about})
         .then((res) => {
-            console.log(res);
             setCurrentUser(res);
         })
         .catch((err) => console.log(err))
-        .finally(() => handleClosePopups());
+        .finally(() => closeAllPopups());
+    }
+
+    function handleUpdateAvatar(avatar) {
+        api.setUserAvatar(avatar)
+        .then((res) => {
+            setCurrentAvatar(res);
+        })
+        .catch((err)=> console.log(err))
+        .finally(() => closeAllPopups());
     }
 
     //handler functions for popups
@@ -99,15 +108,10 @@ function App() {
 
     <Footer />
 
-    <PopupWithForm 
-        name="type_avatar"
-        title="Change Profile Picture" 
-        buttonText="Save" 
+    <EditAvatarPopup 
         isOpen={editAvatarOpen} 
-        onClose={handleClosePopups}>
-        <input id = "avatar-URL" type='url' name='avatarURL' className="popup__input popup__input_type_avatar-URL" minLength="2" />
-        <span id="avatar-URL-error" className = "popup__error"></span>
-    </PopupWithForm>
+        onClose={handleClosePopups} 
+        onUpdateAvatar={handleUpdateAvatar} />
 
     <EditProfilePopup 
         isOpen={editProfileOpen} 
