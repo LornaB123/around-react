@@ -22,6 +22,47 @@ function App() {
     //state variable for current user - calls api.getUserInfo()
     const [currentUser, setCurrentUser] = useState('');
     const [currentAvatar, setCurrentAvatar] = useState('');
+    //set card states
+    const [cards, setCards] = useState([]); 
+
+    function handleCardLike(card) {
+    //check one more time if this card was already liked
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    let likeStatus
+    if(isLiked === false){
+        likeStatus = api.addLike(card._id)
+    }
+    else{
+        likeStatus = api.removeLike(card._id)
+    }
+    likeStatus
+    .then((newCard) => {
+        const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+        //update the state
+        setCards(newCards);
+    })
+    .catch((err) => console.log(err));
+ }
+ 
+ function handleCardDelete(card){
+     api.removeCard(card._id)
+     .then(() => {
+         const cardList = cards.filter((c) => (c._id !== card._id))
+         setCards(cardList);
+     })
+     .catch((err) => console.log(err));
+ }
+ 
+ 
+    //call server for profile content
+    useEffect(() => {
+        api.getInitialCards()
+        .then((res) => {
+            setCards(res)
+        })
+        .catch(err => console.log(err));
+    }, []);
+ 
 
     useEffect(() => {
         api.getUserInfo()
@@ -98,12 +139,15 @@ function App() {
     
     <Main 
     //prop values passed to main
+     cards = {cards}
      onEditAvatar = {handleEditAvatarClick}
      onEditProfile = {handleEditProfileClick}
      onAddPlace = {handleAddCardClick}
      onCardDelete = {handleDeleteCardClick}
      onCardClick = {handleCardClick}
      onCardLike = {handleLikeClick}
+     onUpdateCardLike = {handleCardLike}
+     onUpdateCardDelete = {handleCardDelete}
     />
 
     <Footer />
