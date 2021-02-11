@@ -70,14 +70,14 @@ function Main(props) {
                 <section className="profile">
                         <div className="profile__avatar">
                             <img className="profile__image" src={currentUser.avatar} alt={currentUser.avatar}/>
-                            <button onClick={props.onEditAvatar} className="profile__image-edit" type="button" aria-label="Edit Avatar"></button>
+                            <button onClick={onEditAvatar} className="profile__image-edit" type="button" aria-label="Edit Avatar"></button>
                         </div>
                     <div className="profile__info">
                         <h1 className="profile__info-title">{currentUser.name}</h1>
-                        <button className="profile__edit-button" onClick={props.onEditProfile} aria-label="Edit Profile"></button>
+                        <button className="profile__edit-button" onClick={onEditProfile} aria-label="Edit Profile"></button>
                         <p className="profile__info-subtitle">{currentUser.about}</p>   
                     </div>
-                    <button className="profile__add-button" onClick={props.onAddPlace} aria-label="Add"></button>
+                    <button className="profile__add-button" onClick={onAddPlace} aria-label="Add"></button>
                 </section>
                 <section className="elements">
                     <>
@@ -85,11 +85,9 @@ function Main(props) {
                         <Card
                         key={card._id}
                         card = {card}
-                        onCardDelete = {props.handleCardDelete}
-                        onCardClick = {props.onCardClick}
-                        onCardLike = {props.handleCardLike}
-                        onUpdateCardLike = {props.onUpdateCardLike}
-                        onUpdateCardDelete = {props.onUpdateCardDelete}
+                        onCardDelete = {onCardDelete}
+                        onCardClick = {onCardClick}
+                        onCardLike = {onCardLike}
                         />
                         )
                         )}

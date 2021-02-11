@@ -20,10 +20,10 @@ function Card(props) {
 
     return(
         <figure className="elements__element">
-                <img className="elements__element-pic" alt="card image" onClick ={() => props.onCardClick(card)} src={card && card.link}/>
+                <img className="elements__element-pic" alt="card image" onClick ={() => onCardClick(card)} src={card && card.link}/>
                 <figcaption className="elements__caption">{card.name}</figcaption>
                 <div className = "elements__favorite-container">
-                    <button className={cardLikeButtonClassName} onClick= {() => props.onCardLike(card)} type="button" aria-label="Like"></button>
+                    <button className={cardLikeButtonClassName} onClick= {() => onCardLike(card)} type="button" aria-label="Like"></button>
                     <p className="elements__likes">{card.likes.length}</p>
                 </div>
                 <button className={cardDeleteButtonClassName} type="button" onClick ={() => props.onCardDelete(card)} aria-label="Delete"></button>

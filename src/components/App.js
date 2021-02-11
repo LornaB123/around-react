@@ -6,6 +6,7 @@ import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
+import AddPlacePopup from './AddPlacePopup.js';
 import api from '../utils/api.js';
 import CurrentUserContext from '../contexts/CurrentUserContext.js';
 
@@ -52,7 +53,7 @@ function App() {
      })
      .catch((err) => console.log(err));
  }
- 
+
  
     //call server for profile content
     useEffect(() => {
@@ -62,7 +63,6 @@ function App() {
         })
         .catch(err => console.log(err));
     }, []);
- 
 
     useEffect(() => {
         api.getUserInfo()
@@ -84,11 +84,20 @@ function App() {
     function handleUpdateAvatar(avatar) {
         api.setUserAvatar(avatar)
         .then((res) => {
-            setCurrentAvatar(res);
+            setCurrentUser(res);
         })
         .catch((err)=> console.log(err))
         .finally(() => closeAllPopups());
     }
+
+    function handleAddPlace({name, link}){
+        api.addCard({name, link})
+        .then((newCard)=> {
+           setCards([newCard, ...cards]);
+        })
+        .catch((err) => console.log(err))
+    }
+    
 
     //handler functions for popups
     function handleEditAvatarClick(e) {
@@ -102,15 +111,6 @@ function App() {
     function handleAddCardClick(e) {
         setAddCardOpen(true);
     }
-
-    function handleDeleteCardClick(e) {
-        setDeletePopupOpen(true);
-    }
-    
-    function handleLikeClick(e) {
-        setLikeCardButton(true);
-    }
-
 
     function closeAllPopups() {
         setEditAvatarOpen(false);
@@ -143,11 +143,9 @@ function App() {
      onEditAvatar = {handleEditAvatarClick}
      onEditProfile = {handleEditProfileClick}
      onAddPlace = {handleAddCardClick}
-     onCardDelete = {handleDeleteCardClick}
+     onCardDelete = {handleCardDelete}
      onCardClick = {handleCardClick}
-     onCardLike = {handleLikeClick}
-     onUpdateCardLike = {handleCardLike}
-     onUpdateCardDelete = {handleCardDelete}
+     onCardLike = {handleCardLike}
     />
 
     <Footer />
@@ -162,18 +160,13 @@ function App() {
         onClose={handleClosePopups} 
         onUpdateUser={handleUpdateUser}/>
 
-    <PopupWithForm 
-        name="type_add-card" 
-        title="New Place" 
-        buttonText="Create" 
-        isOpen={addCardOpen} 
-        onClose={handleClosePopups}>
-        <input id="card-title" type='text' name='card-title' className="popup__input popup__input_type_title" placeholder='Title' required maxLength="30" minLength="2"/>
-        <span id="card-title-error" className = "popup__error"></span>
+    <AddPlacePopup
+        isOpen={addCardOpen}
+        onClose = {handleClosePopups}
+        onAddPlace = {handleAddPlace}
+    />
 
-        <input id="card-url" type='url' name='card-link' className='popup__input popup__input_type_link' placeholder='Image Link' required/>
-        <span id="card-url-error" className = "popup__error"></span>
-    </PopupWithForm>
+
 
     <PopupWithForm 
         name="type_delete-card" 
