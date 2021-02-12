@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import CurrentUserContext from '../contexts/CurrentUserContext.js';
 
 function Card(props) {
-   const {card, onCardDelete, onCardClick, onCardLike, onUpdateCardLike, onUpdateCardDelete} = props;
+   const {card, onCardDelete, onCardClick, onCardLike} = props;
    const currentUser = useContext(CurrentUserContext);
 
    // Checking if you are the owner of the current card
@@ -26,21 +26,9 @@ function Card(props) {
                     <button className={cardLikeButtonClassName} onClick= {() => onCardLike(card)} type="button" aria-label="Like"></button>
                     <p className="elements__likes">{card.likes.length}</p>
                 </div>
-                <button className={cardDeleteButtonClassName} type="button" onClick ={() => props.onCardDelete(card)} aria-label="Delete"></button>
+                <button className={cardDeleteButtonClassName} type="button" onClick ={() => onCardDelete(card)} aria-label="Delete"></button>
         </figure>
     );
 }
 
 export default Card;
-
-// {cards.map((card) => 
-//     <Card
-//     key={card._id}
-//     src={card.link}
-//     title={card.name}
-//     likes={card.likes.length}
-//     owner={card.owner}
-//     onCardDelete = {(card) => props.handleCardDelete(card.link, card.name)}
-//     onCardClick = {(card) => props.handleCardClick(card)}
-//     />
-//     )}

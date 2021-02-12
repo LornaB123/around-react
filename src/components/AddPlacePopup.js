@@ -28,6 +28,8 @@ function AddPlacePopup(props) {
             name: cardName,
             link
         });
+        setLink('');
+        setCardName('');
         }
 
     return (
